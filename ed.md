@@ -53,6 +53,65 @@ a
 This is the text segment.
 .
 ```
+## Navigating
+
+To set the current address to a line number, specific the number. Ed will
+print the line.
+
+```
+2
+This is line 2
+```
+
+To print lines n -> m use the comma notation. If n is omitted, the beginning
+of the file is assumed. If m is omitted, the end of the file is assumed.
+
+```
+2,3p
+This is line 2
+Welcome
+,2p
+This is a line
+This is line 2
+2,p
+This is line 2
+,p
+This is a line
+This is line 2
+Welcome
+```
+
+So to append after line 2, nagivate there and use a.
+
+```
+2
+This is line 2
+a
+put this between line 2 & 3
+.
+,p
+This is a line
+This is line 2
+put this between line 2 & 3
+Welcome
+```
+
+To insert before line 2, use i
+
+```
+2
+This is line 2
+i
+put this before 2
+.
+,p
+This is a line
+put this before 2
+This is line 2
+put this between line 2 & 3
+Welcome
+```
+
 
 
 
