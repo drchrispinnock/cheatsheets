@@ -54,3 +54,9 @@ This is the text segment.
 .
 ```
 
+
+
+
+## References
+
+[Ed] Ed Mastery: The **Standard** Unix Text Editor, Michael W. Lucas, Tilted Windmill Press, 2018.
