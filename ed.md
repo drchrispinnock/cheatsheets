@@ -1,29 +1,49 @@
 # ed cheatsheet
 
+## Scope
+
+This is a quick guide to *ed*, the original Unix line editor used by the folks to write Unix code and probably C. There were no monitors in those days! Please see [Ed] Ed Mastery for all the details in modern prose.
+
 ## Commands
 
 ```
-,p	- output the file
-,n	- output the file with line numbers
+# Writing the file to the stdout
+,p		- output the file
+,n		- output the file with line numbers
 A,Bn 
-A,Bp	- between lines A and B
-,pl	- for all above, l will add $ the end of line to see whitespace
+A,Bp	- between lines A and B (0 beginning of file, $ end of file)
+,pl		- for all above, l will add $ the end of line to see whitespace
 
-a	- append at the current line
-Aa	- append at line A
-i	- insert before the current line
-Ai	- insert before line A
-c	- change the current line
-Ac	- change line A
-.	- exit editing mode
+# Editing, moving, deleting
+a		- append at the current line
+Aa		- append at line A
+i		- insert before the current line
+Ai		- insert before line A
+c		- change the current line
+Ac		- change line A
+.		- exit editing mode
 
-u	- undo previous (next undo is redo)
+d   	- delete line
+A   	- delete line A
+A,Bd	- delete lines A to B
 
-kA	- bookmark the current line as A
-'A	- go to the bookmark
+u		- undo previous (next undo is redo)
 
-AmB	- move line A to after line B
+AmB		- move line A to after line B
+AmB		
 
+A,Bj	- join lines A to B to one line
+AtB	    - copy line A to after line B
+A,BtC	- copy lines A,B to after line B
+
+# Files
+Ar	file	- read file and append it after line A
+W file    - "save as", save a copy of the file to file
+A,BW file - save lines A to B to file
+
+# Bookmarks
+kA		- bookmark the current line as A
+'A		- go to the bookmark
 ```
 
 ## Starting ed
@@ -138,6 +158,20 @@ put this between line 2 & 3
 Welcome
 ```
 
+Made a mistake at line 2? No problem - use c to change it. Without the number, change works on the current line.
+
+```
+2c
+h
+.
+,n
+1	This is a line
+2	h
+3	This is line 2
+4	put this between line 2 & 3
+5	Welcome
+```
+
 ## More on addresses and bookmarks
 
 Commands can be called with numbers to give them context. If A and B are
@@ -166,9 +200,37 @@ To go to the bookmark, use '
 'a
 ```
 
-## Changing a line
+Bookmarks move as the lines they mark move.
 
+## Moving and deleting lines
 
+To move lines around, use the m command. For example to move line 3 after line 1:
+
+```
+,n
+1	This is a line
+2	h
+3	This is line 2
+4	put this between line 2 & 3
+5	Welcome
+3m1
+,n
+1	This is a line
+2	This is line 2
+3	h
+4	put this between line 2 & 3
+5	Welcome
+```
+
+To delete lines, use d:
+
+```
+2,3d
+,n
+1	This is a line
+2	put this between line 2 & 3
+3	Welcome
+```
 
 ## References
 
