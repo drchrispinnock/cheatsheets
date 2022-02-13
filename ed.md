@@ -41,9 +41,25 @@ Ar	file	- read file and append it after line A
 W file    - "save as", save a copy of the file to file
 A,BW file - save lines A to B to file
 
+f file    - specify the filename for the current file
+e file    - switch to editting file 
+			  (complains if current buffer unsaved, second invocation overrides)
+			
+.= 	   - print number of lines in the file
+
 # Bookmarks
 kA		- bookmark the current line as A
 'A		- go to the bookmark
+
+# Escape to the shell
+
+! cmd  - run command from inside ed
+r ! cmd - insert the output of cmd to current line
+Ar ! cmd - ... to after line A
+w ! cmd - send the file to command
+e ! cmd - start a new file with the output of command
+
+
 ```
 
 ## Starting ed
@@ -101,7 +117,7 @@ This is the text segment.
 ```
 ## Navigating
 
-To set the current address to a line number, specific the number. Ed will
+To set the current line (also called the address) to a line number, specific the number. Ed will
 print the line.
 
 ```
