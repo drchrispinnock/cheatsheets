@@ -1,5 +1,31 @@
 # ed cheatsheet
 
+## Commands
+
+```
+,p	- output the file
+,n	- output the file with line numbers
+A,Bn 
+A,Bp	- between lines A and B
+,pl	- for all above, l will add $ the end of line to see whitespace
+
+a	- append at the current line
+Aa	- append at line A
+i	- insert before the current line
+Ai	- insert before line A
+c	- change the current line
+Ac	- change line A
+.	- exit editing mode
+
+u	- undo previous (next undo is redo)
+
+kA	- bookmark the current line as A
+'A	- go to the bookmark
+
+AmB	- move line A to after line B
+
+```
+
 ## Starting ed
 
 To start with an empty buffer, simply:
@@ -112,7 +138,35 @@ put this between line 2 & 3
 Welcome
 ```
 
+## More on addresses and bookmarks
 
+Commands can be called with numbers to give them context. If A and B are
+line numbers:
+
+```
+A,Bn  - writes the file between lines A and B with line numbers
+A,Bp  - the same without line numbers
+0,Bn  - from beginning to B
+A,$n  - from A to the end
+,n or ,p - prints the lot
+```
+
+Adding an l command (e.g. ,nl) will print a $ so that trailing space can be
+seen.
+
+To bookmark the current address with the letter a, use k:
+
+```
+ka
+```
+
+To go to the bookmark, use '
+
+```
+'a
+```
+
+## Changing a line
 
 
 
